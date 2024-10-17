@@ -1,3 +1,6 @@
+package com.unicauca.taller2.capaControladores;
+
+
 import java.util.List;
 import java.util.Map;
 
@@ -12,25 +15,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.unicauca.taller.fachadaServices.services.IArticuleService;
-import com.unicauca.taller.fachadaServices.DTO.articuleDTO;
+import com.unicauca.taller2.fachadaServices.DTO.ConferenceDTO;
+import com.unicauca.taller2.fachadaServices.services.IConferences;
 
-@RequestController
+
+
+@RestController
 @RequestMapping("/api")
 public class ConferenceRestController {
-    @AutoWired
+    @Autowired
     private IConferences conferenceServices;
     @GetMapping("/conference")
     public List<ConferenceDTO> listConferences(){
         return conferenceServices.findAll();
     }
-    @GetMapping("/Confernece/{id}")
+    @GetMapping("/conference/{id}")
     public ConferenceDTO consultConferences(@PathVariable int id){
-        ConferencesDTO objConference = null;
+        ConferenceDTO objConference = null;
         objConference = conferenceServices.findByID(id);
         return objConference;
     } 
     @PostMapping("/conference") 
+    
     public ConferenceDTO createConference(@RequestBody ConferenceDTO conference){
         ConferenceDTO objConference = null;
         objConference = conferenceServices.save(conference);
@@ -42,6 +48,11 @@ public class ConferenceRestController {
         obj = conferenceServices.findByID(id);
         return 2;
     }
-
+    @PostMapping("/conferences")
+    public ConferenceDTO createArticule(@RequestBody ConferenceDTO confernece) {
+		ConferenceDTO objConference = null;
+		objConference = conferenceServices.save(confernece);
+		return objConference;
+	}
 
 }

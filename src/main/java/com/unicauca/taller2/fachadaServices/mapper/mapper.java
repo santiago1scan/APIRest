@@ -1,11 +1,13 @@
+package com.unicauca.taller2.fachadaServices.mapper;
 
-import org.ModelMapper.ModelMapper;
+
+import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class mapper {
-    @bean
+    @Bean
     public ModelMapper ModelMapper(){
         return new  ModelMapper();
     }
